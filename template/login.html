@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Bienvenue sur la page de connexion</h1>
+{{ get_flashed_messages() }}
+{{ form.errors }}
+<!-- <form method="POST">
+    <label>Username{{ form.username() }}</label>
+    <label>Password{{ form.password() }}</label>
+    {{ form.submit() }}
+    {{ form.hidden_tag() }}
+</form> -->
+<form method="POST">
+    <div class="mb-3">
+      <label for="Username" class="form-label">Login: {{ form.username() }}</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Mot de passe: {{ form.password() }}</label>
+      <input type="password" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+    {{ form.submit() }}
+    {{ form.hidden_tag() }}
+  </form>
+{% endblock %}

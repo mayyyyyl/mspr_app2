@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_ldap3_login import LDAP3LoginManager
 from flask_login import LoginManager, UserMixin
-
 from ldap3 import Server, Connection, ALL
+
+
 server = Server('192.168.211.134')
 conn = Connection(server)
 print(conn.bind())
@@ -16,22 +17,22 @@ app.config['DEBUG'] = True
 app.config['LDAP_HOST'] = '192.168.211.134'
 
 # Base DN of your directory
-app.config['LDAP_BASE_DN'] = 'dc=MSPR,dc=local'
+app.config['LDAP_BASE_DN'] = 'CN=Users,DC=MSPR,DC=local'
 
 # Users DN to be prepended to the Base DN
-app.config['LDAP_USER_DN'] = 'ou=Administrateur'
+app.config['LDAP_USER_DN'] = 'CN=Administrateur,OU=Users,DC=MSPR,DC=local'
 
 # Groups DN to be prepended to the Base DN
-app.config['LDAP_GROUP_DN'] = 'ou=User'
+app.config['LDAP_GROUP_DN'] = 'CN=Users,DC=MSPR,DC=local'
 
 # The RDN attribute for your user schema on LDAP
-app.config['LDAP_USER_RDN_ATTR'] = 'cn'
+app.config['LDAP_USER_RDN_ATTR'] = 'uid'
 
 # The Attribute you want users to authenticate to LDAP with.
 app.config['LDAP_USER_LOGIN_ATTR'] = 'mail'
 
 # The Username to bind to LDAP with
-app.config['LDAP_BIND_USER_DN'] = 'Administrateur'
+app.config['LDAP_BIND_USER_DN'] = 'CN=Administrateur,CN=Users,DC=MSPR,DC=local'
 
 # The Password to bind to LDAP with
 app.config['LDAP_BIND_USER_PASSWORD'] = '522-522-Ze'
